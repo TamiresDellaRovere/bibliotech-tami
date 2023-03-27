@@ -1,0 +1,6 @@
+card{
+    display: flexbox;
+    width: 75px;
+    justify-content: center;
+    text-align: center;
+}
