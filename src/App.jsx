@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { AuthContext } from "./contexts/AuthContext";
 import { auth } from "./firebase/config";
+import { AdicionarLivro } from "./pages/AdicionarLivros/AdicionarLivros";
 
 export function App() {
 
@@ -32,11 +33,12 @@ export function App() {
 
     return (
         <>
-            <AuthContext.Provider value={usuarioLogado}>
+            <AuthContext.Provider value={usuarioLogado}> {/* Se o usuario estiver logado vai prover os dados do usuário para as outras paginas*/}
                 <BrowserRouter>
                     <Routes>
                         <Route path="/" element={<Root />}>
                             <Route path="/" element={<Home />} />
+                            <Route path="/livros/adicionar" element={<AdicionarLivro />} />
                         </Route>
                         <Route path="/login" element={<Login />} />
                         <Route path="/cadastro" element={<Cadastro />} />

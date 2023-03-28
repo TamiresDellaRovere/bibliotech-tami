@@ -22,7 +22,7 @@ const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 
 //Configura o Firestore e seus recursos
-export const db= getFirestore(app);
+export const db = getFirestore(app); //db é data base -> base de dados;
 
 //Configura o Storage e seus recursos de Upload
 export const storage = getStorage(app);

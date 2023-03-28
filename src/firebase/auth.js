@@ -31,5 +31,6 @@ export async function loginEmailSenha(email, senha){
 }
 
 export async function logout(){
+    // Deslogar o usuário 
     await signOut(auth);
 }
