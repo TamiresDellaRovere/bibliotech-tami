@@ -9,6 +9,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { AuthContext } from "./contexts/AuthContext";
 import { auth } from "./firebase/config";
 import { AdicionarLivro } from "./pages/AdicionarLivros/AdicionarLivros";
+import { Livros } from "./pages/Livros/Livros";
 
 export function App() {
 
@@ -38,6 +39,7 @@ export function App() {
                     <Routes>
                         <Route path="/" element={<Root />}>
                             <Route path="/" element={<Home />} />
+                            <Route path="/livros" element={<Livros />} />
                             <Route path="/livros/adicionar" element={<AdicionarLivro />} />
                         </Route>
                         <Route path="/login" element={<Login />} />

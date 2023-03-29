@@ -27,8 +27,8 @@ export function Menu() {
                         <Nav.Link as={Link} to="/">
                             Home
                         </Nav.Link>
-                        <Nav.Link as={Link} to="/livros/adicionar">
-                            Adicionar Livro
+                        <Nav.Link as={Link} to="/livros">
+                            Livros
                         </Nav.Link>
                         <Nav.Link onClick={onLogout}>
                             <i className="bi bi-box-arrow-right"></i>
