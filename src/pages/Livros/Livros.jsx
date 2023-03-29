@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { Button, Container, Table } from "react-bootstrap";
+import { toast } from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { Loader } from "../../components/Loader/Loader";
-import { getLivros } from "../../firebase/livros";
+import { deleteLivro, getLivros } from "../../firebase/livros";
 import "./Livros.css";
 
 export function Livros() {
@@ -14,6 +15,19 @@ export function Livros() {
             setLivros(busca) 
         })
     }, []);
+
+    function onDeleteLivro(id, titulo){
+        //o "window." não é obrigatório, funciona do mesmo modo com ele ou sem ele
+        const deletar = window.confirm(`Tem certeza que deseja excluir o livro ${titulo}?`)
+        if(deletar) {
+            deleteLivro(id).then(() => {
+                toast.success(`${titulo} apagado com sucesso!`, {duration: 2000, position:"bottom-rigth"});
+                getLivros().then(busca => {
+                    setLivros(busca)
+                })
+            })
+        }
+    } // essa função faz deletar o livro
 
     return (
         <div className="livros">
@@ -60,7 +74,7 @@ export function Livros() {
                                             >
                                                 <i className="bi bi-pencil-fill"></i> {/*icone editar*/}
                                             </Button>
-                                            <Button variant="danger" size="sm">
+                                            <Button variant="danger" size="sm" onClick={() => onDeleteLivro(livro.id, livro.titulo)}> {/*criar uma arrow devido a necessidade de passar o parametro livro.id e livro.titulo*/}
                                                 <i className="bi bi-trash3-fill"></i> {/*icone remover */}
                                             </Button>
                                         </td>

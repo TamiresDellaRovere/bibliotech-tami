@@ -1,4 +1,4 @@
-import { addDoc, doc, getDoc, getDocs, updateDoc } from "firebase/firestore";
+import { addDoc, deleteDoc, doc, getDoc, getDocs, updateDoc } from "firebase/firestore";
 import { livrosCollection } from "./collections";
 
 export async function addLivro(data) {
@@ -22,3 +22,7 @@ export async function getLivro(id){
 export async function updateLivro(id, data) {
     await updateDoc(doc(livrosCollection, id), data);
 } // essa função vai atualizar o livro editado
+
+export async function deleteLivro(id) {
+    await deleteDoc(doc(livrosCollection, id));
+} // essa função deleta o livro atraves do id
