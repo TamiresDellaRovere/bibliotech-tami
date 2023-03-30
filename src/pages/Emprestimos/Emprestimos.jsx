@@ -42,7 +42,7 @@ export function Emprestimos() {
                                 {emprestimos.map(emprestimo => {
                                     const dataEmprestimo = emprestimo.dataEmprestimo.toDate().toLocaleDateString('pt-br');
                                     return (
-                                        <tr>
+                                        <tr key={emprestimo.id}>
                                             <td>{emprestimo.leitor}</td>
                                             <td>{emprestimo.email}</td>
                                             <td>{emprestimo.telefone}</td>

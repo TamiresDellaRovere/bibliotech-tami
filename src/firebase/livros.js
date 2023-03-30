@@ -1,5 +1,7 @@
 import { addDoc, deleteDoc, doc, getDoc, getDocs, updateDoc } from "firebase/firestore";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { livrosCollection } from "./collections";
+import { storage } from "./config";
 
 export async function addLivro(data) {
     await addDoc(livrosCollection, data);
@@ -26,3 +28,24 @@ export async function updateLivro(id, data) {
 export async function deleteLivro(id) {
     await deleteDoc(doc(livrosCollection, id));
 } // essa função deleta o livro atraves do id
+
+export async function uploadCapaLivro(imagem) {
+    const filename = imagem.name;
+    const imageRef = ref(storage, `livros/${filename}`);// ref cria uma pasta livros e o filename é o nome do arquivo;
+    const result = await uploadBytes(imageRef, imagem);
+    return await getDownloadURL(result.ref);
+}
+
+// essa função retorna os dados url da imagem
+//ref -> função do storage
+
+// //quem armazena é o storage
+// export async function uploadCapaLivro(imagem){
+//     //pego o nome da img e armazeno no filename
+//     const filename = imagem.name;
+//     //imageRef recebe a configuração de upload e pasta livro com o nome do arquivo dentro
+//     const imageRef = ref(storage, `livros/${filename}`);
+//     //result vai carregar dados de localização com base na pasta e nos dados do parâmetro imagem 
+//     //se deu certo ou algum erro
+//     const result = await uploadBytes(imageRef, imagem);
+//     //Ret
