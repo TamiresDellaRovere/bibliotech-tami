@@ -3,12 +3,12 @@ import { Button, Container, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
-import { adicionarEmprestimo, getEmprestimo } from "../../firebase/emprestimos";
+import { getEmprestimo, updateEmprestimo } from "../../firebase/emprestimos";
 import { getLivro, getLivros } from "../../firebase/livros"
 
 export function EditarEmprestimo() {
 
-    const {id} = useParams();
+    const { id } = useParams();
 
     const [livros, setLivros] = useState([]);
 
@@ -19,8 +19,8 @@ export function EditarEmprestimo() {
     function onSubmit(data) {
         getLivro(data.idLivro).then(livro => {
             delete data.idLivro;
-            let novoEmprestimo = {...data, status: "Pendente", livro, dataEmprestimo: new Date()};
-            adicionarEmprestimo(novoEmprestimo).then(() => {
+            let editEmprestimo = { ...data, livro };
+            updateEmprestimo(id, editEmprestimo).then(() => {
                 toast.success("Empréstimo editado com sucesso!", { duration: 2000, position: "bottom-right" })
                 navigate("/emprestimos");
             })

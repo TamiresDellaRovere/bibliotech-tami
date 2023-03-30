@@ -1,4 +1,5 @@
-import { addDoc, doc, getDoc, getDocs } from "firebase/firestore";
+import { async } from "@firebase/util";
+import { addDoc, doc, getDoc, getDocs, updateDoc } from "firebase/firestore";
 import { emprestimosCollection } from "./collections";
 
 export async function adicionarEmprestimo(data){
@@ -13,9 +14,13 @@ export async function getEmprestimos() {
         emprestimos.push({...doc.data(), id: doc.id});
     });
     return emprestimos;
-}
+} // essa função retorna os emprestimo na tabela de emprestimos
 
 export async function getEmprestimo(id) {
     const document = await getDoc(doc(emprestimosCollection, id));
     return {...document.data(), id: document.id};
-}
+} // essa função traz o livro a ser editado no editar emprestimos
+
+export async function updateEmprestimo (id, data) {
+    await updateDoc(doc(emprestimosCollection, id), data);
+} // esse aqui edita o livro na seção de editarEmprestimo
