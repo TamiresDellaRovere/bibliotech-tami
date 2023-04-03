@@ -14,8 +14,21 @@ import { EditarLivro } from "./pages/EditarLivro/EditarLivro";
 import { AdicionarEmprestimo } from "./pages/AdicionarEmprestimo/AdicionarEmprestimo";
 import { Emprestimos } from "./pages/Emprestimos/Emprestimos";
 import { EditarEmprestimo } from "./pages/EditarEmprestimo/EditarEmprestimo";
+import { ThemeContext } from "./contexts/ThemeContext";
 
 export function App() {
+
+
+    const [temaEscuro, setTemaEscuro] = useState(false);
+
+    //alterna entre true e false toda vez que for chamada;
+    function alternar() {
+        if (temaEscuro === true) {
+            setTemaEscuro(false)
+        } else {
+            setTemaEscuro(true);
+        }
+    }
 
     const [usuarioLogado, setUsuarioLogado] = useState(null); //começa o estado deslogado, quando loga atualiza o estado;
 
@@ -38,23 +51,25 @@ export function App() {
 
     return (
         <>
-            <AuthContext.Provider value={usuarioLogado}> {/* Se o usuario estiver logado vai prover os dados do usuário para as outras paginas*/}
-                <BrowserRouter>
-                    <Routes>
-                        <Route path="/" element={<Root />}>
-                            <Route path="/" element={<Home />} />
-                            <Route path="/livros" element={<Livros />} />
-                            <Route path="/livros/adicionar" element={<AdicionarLivro />} />
-                            <Route path="/livros/editar/:id" element={<EditarLivro />} />
-                            <Route path="/emprestimos" element={<Emprestimos />} />
-                            <Route path="/emprestimos/adicionar" element={<AdicionarEmprestimo />} />
-                            <Route path="/emprestimos/editar/:id" element={<EditarEmprestimo />} />
-                        </Route>
-                        <Route path="/login" element={<Login />} />
-                        <Route path="/cadastro" element={<Cadastro />} />
-                    </Routes>
-                </BrowserRouter>
-            </AuthContext.Provider>
+            <ThemeContext.Provider value={{ temaEscuro: temaEscuro, alternar: alternar }}>
+                <AuthContext.Provider value={usuarioLogado}> {/* Se o usuario estiver logado vai prover os dados do usuário para as outras paginas*/}
+                    <BrowserRouter>
+                        <Routes>
+                            <Route path="/" element={<Root />}>
+                                <Route path="/" element={<Home />} />
+                                <Route path="/livros" element={<Livros />} />
+                                <Route path="/livros/adicionar" element={<AdicionarLivro />} />
+                                <Route path="/livros/editar/:id" element={<EditarLivro />} />
+                                <Route path="/emprestimos" element={<Emprestimos />} />
+                                <Route path="/emprestimos/adicionar" element={<AdicionarEmprestimo />} />
+                                <Route path="/emprestimos/editar/:id" element={<EditarEmprestimo />} />
+                            </Route>
+                            <Route path="/login" element={<Login />} />
+                            <Route path="/cadastro" element={<Cadastro />} />
+                        </Routes>
+                    </BrowserRouter>
+                </AuthContext.Provider>
+            </ThemeContext.Provider>
             <Toaster />  {/* Faz a biblioteca hot-toast funcionar em todas as paginas*/}
 
 

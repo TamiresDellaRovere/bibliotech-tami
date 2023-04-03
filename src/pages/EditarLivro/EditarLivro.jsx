@@ -1,11 +1,15 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { Button, Container, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
 import { getLivro, updateLivro, uploadCapaLivro } from "../../firebase/livros";
+import { ThemeContext } from "../../contexts/ThemeContext";
 
 export function EditarLivro() {
+
+    const resultado = useContext(ThemeContext);
+    const temaEscuro = resultado.temaEscuro;
 
     const {id} = useParams();
 
@@ -43,8 +47,9 @@ export function EditarLivro() {
     }, [id, reset]);
 
     return (
+        <div className={temaEscuro ? "bg-dark text-light" : "bg-light text-dark" }>
         <div className="editar-livro">
-            <Container>
+            <Container className={temaEscuro ? "bg-dark text-light" : "bg-light text-dark" }>
                 <h1>Editar livro</h1>
                 <hr />
                 <Form onSubmit={handleSubmit(onSubmit)}>
@@ -83,6 +88,7 @@ export function EditarLivro() {
                     <Button type="submit" variant="success">Editar</Button>
                 </Form>
             </Container>
+        </div>
         </div>
     )
 }
