@@ -17,6 +17,7 @@ import { EditarEmprestimo } from "./pages/EditarEmprestimo/EditarEmprestimo";
 import { ThemeContext } from "./contexts/ThemeContext";
 import { Quiz } from "./pages/Quizz/Quizz";
 import { NotFound } from "./pages/NotFound/NotFound";
+// import { NovoBreadcrumb } from "./components/Breadcrumb/Breadcrumb";
 
 export function App() {
 
@@ -57,7 +58,7 @@ export function App() {
                 <AuthContext.Provider value={usuarioLogado}> {/* Se o usuario estiver logado vai prover os dados do usuário para as outras paginas*/}
                     <BrowserRouter>
                         <Routes>
-                            <Route path="/" element={<Root />}>
+                            <Route path="/" element={<Root />}>                              
                                 <Route path="/" element={<Home />} />
                                 <Route path="/livros" element={<Livros />} />
                                 <Route path="/livros/adicionar" element={<AdicionarLivro />} />

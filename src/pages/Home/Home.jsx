@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { ThemeContext } from "../../contexts/ThemeContext";
+import { Breadcrumb } from "../../components/Breadcrumb/Breadcrumb";
 
 export function Home (){
     const resultado = useContext(ThemeContext);
@@ -8,9 +9,8 @@ export function Home (){
     return(
         
         <div className={temaEscuro ? "bg-dark text-light" : "bg-light text-dark" }>
-            
-                <h1>Home</h1>
-            
+            <Breadcrumb />
+            <div><h1>Home</h1></div>
         </div>
     );
 }

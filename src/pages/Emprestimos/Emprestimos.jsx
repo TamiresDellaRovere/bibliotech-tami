@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { getEmprestimos } from "../../firebase/emprestimos";
 import { Loader } from "../../components/Loader/Loader";
 import { ThemeContext } from "../../contexts/ThemeContext";
+import { Breadcrumb } from "../../components/Breadcrumb/Breadcrumb";
 
 export function Emprestimos() {
 
@@ -21,6 +22,7 @@ export function Emprestimos() {
     return (
         <div className={temaEscuro ? "bg-dark text-light" : "bg-light text-dark" }>
         <div className="emprestimos">
+            <Breadcrumb />
             <Container className={temaEscuro ? "bg-dark text-light" : "bg-light text-dark" }>
                 <div className="d-flex justify-content-between align-items-center">
                     <h1>Emprestimos</h1>
