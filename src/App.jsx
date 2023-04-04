@@ -16,6 +16,7 @@ import { Emprestimos } from "./pages/Emprestimos/Emprestimos";
 import { EditarEmprestimo } from "./pages/EditarEmprestimo/EditarEmprestimo";
 import { ThemeContext } from "./contexts/ThemeContext";
 import { Quiz } from "./pages/Quizz/Quizz";
+import { NotFound } from "./pages/NotFound/NotFound";
 
 export function App() {
 
@@ -68,6 +69,7 @@ export function App() {
                             <Route path="/login" element={<Login />} />
                             <Route path="/cadastro" element={<Cadastro />} />
                             <Route path="/quizz" element={<Quiz />} />
+                            <Route path="*" element={<NotFound />} />
                         </Routes>
                     </BrowserRouter>
                 </AuthContext.Provider>
